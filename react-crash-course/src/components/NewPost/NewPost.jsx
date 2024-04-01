@@ -1,7 +1,7 @@
 import styles from "./NewPost.module.css"
 import { useState } from "react";
 
-function NewPost({ onClose }) {
+function NewPost({ onClose, onAddPost }) {
 
     const [authorName, setAuthorName] = useState("");
     const [bodyText, setBodyText] = useState("");
@@ -24,6 +24,7 @@ function NewPost({ onClose }) {
 
         console.log(postData)
         console.log(bodyText, authorName)
+        onAddPost(postData)
         onClose()
     }
 
