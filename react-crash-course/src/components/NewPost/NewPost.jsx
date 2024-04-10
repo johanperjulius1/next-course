@@ -14,7 +14,7 @@ function NewPost({ onClose, onAddPost }) {
         setBodyText(event.target.value)
     };
 
-    const submitHandler = (event) => {
+    const submitHandler = async (event) => {
         event.preventDefault();
 
         const postData = ({
@@ -22,10 +22,13 @@ function NewPost({ onClose, onAddPost }) {
             body: bodyText
         });
 
+
         console.log(postData)
         console.log(bodyText, authorName)
         onAddPost(postData)
         onClose()
+
+
     }
 
     return (

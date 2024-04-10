@@ -5,8 +5,8 @@ import { useState } from "react";
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const createPostHandler = () => setIsModalOpen(true);
-  const modalCloseHandler = () =>  setIsModalOpen(false);
-  
+  const modalCloseHandler = () => setIsModalOpen(false);
+
 
   return (
     <>
