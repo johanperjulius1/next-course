@@ -1,5 +1,6 @@
 import styles from "./NewPost.module.css"
 import { useState } from "react";
+import Modal from "../../components/Modal/Modal";
 
 function NewPost({ onClose, onAddPost }) {
 
@@ -22,16 +23,14 @@ function NewPost({ onClose, onAddPost }) {
             body: bodyText
         });
 
+        
 
-        console.log(postData)
-        console.log(bodyText, authorName)
-        onAddPost(postData)
-        onClose()
 
 
     }
 
     return (
+        <Modal>
         <form className={styles.form} onSubmit={submitHandler}>
             <p>
                 <label htmlFor="name"> Your name</label>
@@ -55,6 +54,7 @@ function NewPost({ onClose, onAddPost }) {
             </p>
 
         </form>
+        </Modal>
     )
 }
 
