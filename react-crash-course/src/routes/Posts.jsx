@@ -30,6 +30,5 @@ export async function loader() {
 
   } catch (error) {
     console.error('Error fetching posts:', error.message);
-    // Handle error (e.g., display an error message to the user)
-  }
+    return [];   }
 }
