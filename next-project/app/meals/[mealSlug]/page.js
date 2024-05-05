@@ -1,11 +1,11 @@
 import React from 'react'
-import Header from '@/components/header'
+import MainHeader from '@/components/MainHeader/main-header'
 import Link from 'next/link'
 
-export default function mealSlug() {
+export default function MealDetailsPage() {
   return (
     <main>
-      <Header />
+      <MainHeader />
       <h1>Welcome to mealSlug</h1>
       <Link href="/">Go to home page</Link>
     </main>
