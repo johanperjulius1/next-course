@@ -2,6 +2,15 @@ import React from 'react'
 import Link from 'next/link'
 import styles from './page.module.css'
 import MealsGrid from '@/components/Meals/MealsGrid/meals-grid'
+import { getMeals } from '@/lib/meals'
+import { Suspense } from 'react'
+
+// server components can use async await
+
+async function Meals() {
+  const meals = await getMeals()
+  return <MealsGrid meals={meals} />
+}
 
 export default function MealsPage() {
   return (
@@ -15,7 +24,9 @@ export default function MealsPage() {
           <Link href="/meals/share">Share your favorite recipe</Link></p>
       </header>
       <main className={styles.main}>
-        <MealsGrid meals={[]}/>
+        <Suspense fallback={ <p className={styles.loading}>Fetching meals...</p>}>
+          <Meals />
+        </Suspense>
       </main>
     </>
   )

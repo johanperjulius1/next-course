@@ -1,13 +1,30 @@
 import React from 'react'
-import MainHeader from '@/components/MainHeader/main-header'
-import Link from 'next/link'
+import styles from './page.module.css'
+import Image from 'next/image'
+import { getMeal } from '@/lib/meals'
 
-export default function MealDetailsPage() {
+export default function MealDetailsPage({params}) {
+  console.log(params)
+  const meal = getMeal(params.mealSlug)
+  console.log(meal)
+  meal.instructions = meal.instructions.replace(/\n/g, '<br>')
   return (
-    <main>
-      <MainHeader />
-      <h1>Welcome to mealSlug</h1>
-      <Link href="/">Go to home page</Link>
-    </main>
+    <>
+      <header className={styles.header}>
+        <div className={styles.image}>
+          <Image fill src={meal.image} alt={meal.title}/>
+        </div>
+        <div className={styles.headerText}>
+          <h1> {meal.title}</h1>
+          <p className={styles.creator}>
+            by <a href={`mailto:${meal.creator_email}`}> {meal.creator}</a>
+          </p>
+          <p className={styles.summary}>{meal.summary}</p>
+        </div>
+      </header>
+      <main>
+        <p className={styles.instructions} dangerouslySetInnerHTML={{__html:meal.instructions}}></p>
+      </main>
+    </>
   )
 }
