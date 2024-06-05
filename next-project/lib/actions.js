@@ -1,5 +1,8 @@
 'use server'
+import { redirect } from "next/navigation"
 // Adding it to top of file makes all functions server actions
+import { saveMeal } from "./meals"
+
 export async function shareMeal(formData) {
   // a function guaranteed to execute on the server and only there => server action
 
@@ -11,5 +14,6 @@ export async function shareMeal(formData) {
     creator: formData.get('name'),
     creator_email: formData.get('email'),
   }
-  console.log(meal)
+ await saveMeal(meal)
+ redirect('/meals')
 }
