@@ -1,12 +1,15 @@
 import React from 'react'
 import styles from './page.module.css'
+import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import { getMeal } from '@/lib/meals'
 
 export default function MealDetailsPage({params}) {
-  console.log(params)
   const meal = getMeal(params.mealSlug)
-  console.log(meal)
+  if (!meal) {
+    // calls closest error or notFound page
+    notFound()
+  }
   meal.instructions = meal.instructions.replace(/\n/g, '<br>')
   return (
     <>
